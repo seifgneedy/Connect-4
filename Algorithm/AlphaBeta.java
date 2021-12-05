@@ -3,7 +3,7 @@ import Util.*;
 public class AlphaBeta implements Algorithm {
     int maxDepth;
     Heuristic heuristic;
-    AlphaBeta(int k){
+    public AlphaBeta(int k){
         this.maxDepth=k;
         heuristic = new Heuristic();
     }

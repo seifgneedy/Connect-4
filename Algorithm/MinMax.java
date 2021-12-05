@@ -3,7 +3,7 @@ import Util.*;
 public class MinMax implements Algorithm {
     int maxDepth;
     Heuristic heuristic;
-    MinMax(int k){
+    public MinMax(int k){
         this.maxDepth=k;
         heuristic=new Heuristic();
     }
