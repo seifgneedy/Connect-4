@@ -15,11 +15,11 @@ public class Heuristic {
       
         return util;
     }
-    int getAIScore(char[][] board){
+    public int getAIScore(char[][] board){
    
        return NumOfConnect_4(board, true);
     }
-    int getPlayerSore(char[][] board){
+    public  int getPlayerSore(char[][] board){
         
         return NumOfConnect_4(board, false);
     }

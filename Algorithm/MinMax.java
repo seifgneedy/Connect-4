@@ -9,7 +9,7 @@ public class MinMax implements Algorithm {
     }
     @Override
     public char[][] Decision(char[][] board) {
-        return maximize(board, maxDepth).getBoard();
+        return maximize(board, 0).getBoard();
     }
 
     State maximize(char[][] board,int k){
@@ -17,7 +17,7 @@ public class MinMax implements Algorithm {
             return new State(null,heuristic.eval(board));
         State state = new State(null,Integer.MIN_VALUE);
         for(char[][] child : Util.getNeighbours(board, true)){
-            State childState=minimize(child, k-1);
+            State childState=minimize(child, k+1);
             if(childState.utility > state.utility)
                 state=new State(child,childState.utility);
         }        
@@ -29,7 +29,7 @@ public class MinMax implements Algorithm {
             return new State(null,heuristic.eval(board));
         State state = new State(null,Integer.MAX_VALUE);
         for(char[][] child : Util.getNeighbours(board, false)){
-            State childState=maximize(child, k-1);
+            State childState=maximize(child, k+1);
             if(childState.utility < state.utility)
                 state=new State(child,childState.utility);
         }        

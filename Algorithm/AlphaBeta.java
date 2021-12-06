@@ -9,7 +9,7 @@ public class AlphaBeta implements Algorithm {
     }
     @Override
     public char[][] Decision(char[][] board) {
-        return maximize(board, maxDepth, Integer.MIN_VALUE, Integer.MAX_VALUE).getBoard();
+        return maximize(board, 0, Integer.MIN_VALUE, Integer.MAX_VALUE).getBoard();
     }
     State maximize(char[][] board,int k,int alpha,int beta){
         if(k==maxDepth||Util.isTerminal(board))
@@ -17,7 +17,7 @@ public class AlphaBeta implements Algorithm {
         State state = new State(null,Integer.MIN_VALUE);
 
         for(char[][] child : Util.getNeighbours(board, true)){
-            State childState=minimize(child, k-1,alpha,beta);
+            State childState=minimize(child, k+1,alpha,beta);
             if(childState.utility > state.utility)
                 state=new State(child,childState.utility);
             if(state.utility >= beta)
@@ -33,7 +33,7 @@ public class AlphaBeta implements Algorithm {
             return new State(null,heuristic.eval(board));
         State state = new State(null,Integer.MAX_VALUE);
         for(char[][] child : Util.getNeighbours(board, false)){
-            State childState=maximize(child, k-1,alpha,beta);
+            State childState=maximize(child, k+1,alpha,beta);
             if(childState.utility < state.utility)
                 state=new State(child,childState.utility);
             if(state.utility<=alpha)
