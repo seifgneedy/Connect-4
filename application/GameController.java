@@ -1,13 +1,17 @@
 package application;
 
-import Util.*;
+import java.io.IOException;
 
+import Util.*;
 import javafx.event.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class GameController {
     @FXML
@@ -17,7 +21,7 @@ public class GameController {
     @FXML
     private HBox boardBox;
     private int width,height;
-    private boolean playerTurn = true;
+    private boolean playerSuccess = false;
     private char[][] board;
     private Color pColor = Color.rgb(230, 255, 7),
                 aColor = Color.rgb(198, 10, 10);
@@ -35,37 +39,33 @@ public class GameController {
     }
     @FXML
     private void selectColumn(Event event){
-        event.consume();
-        if( ! playerTurn )
-            return;
-        playerTurn = false;
         boolean notFound = true;
         int w = boardBox.getChildren().indexOf(event.getSource());
         int h;
         for(h=height-1; h>=0; h--){
             if(board[h][w] == '_'){
                 notFound = false;
-                board[h][w] = 'a';
+                board[h][w] = 'p';
+                playerSuccess = true;
                 break;
             }
         }
         // column is full
-        if(notFound)
+        if(notFound){
+            playerSuccess = false;
             return;
+        }
         ((Circle)((VBox) event.getSource()).getChildren().get(h)).setFill(pColor);
         turnColor.setFill(aColor);
         turnName.setText(aName);
-        aiTurn();
-
-        playerTurn = true;
-        turnColor.setFill(pColor);
-        turnName.setText(pName);
-        if(Util.isTerminal(board)){
-            endOfGame();
-        }
+        event.consume();
     }
+    @FXML
     private void aiTurn(){
+        if( ! playerSuccess)
+            return;
         char[][] nextBoard = Main.solver.Decision(board);
+        boolean found = false;
         for(int i=0; i<height; i++){
             for(int j=0; j<width; j++){
                 if(nextBoard[i][j] != board[i][j]){
@@ -73,19 +73,43 @@ public class GameController {
                     VBox col = (VBox)boardBox.getChildren().get(j);
                     ((Circle)col.getChildren().get(i)).setFill(aColor);
                     board = nextBoard;
-                    return;
+                    found = true;
+                    break;
                 }
             }
+            if(found)
+                break;
+        }
+        turnColor.setFill(pColor);
+        turnName.setText(pName);
+        playerSuccess = false;
+        if(Util.isTerminal(board)){
+            endOfGame();
         }
     }
     private void endOfGame(){
-        /////////////////////////
-        ///////////////////////
-        /////////////////////////
-        //////////////////////////
-        ////////////////////////
-        //////////////////////////
-        ///////////////
+        Heuristic h = new Heuristic();
+        for(int i=0; i<board.length; i++){
+            for(int j=0; j<board[0].length; j++)
+                System.out.print(board[i][j]);
+            System.out.println();
+        }
+        Main.scores[0] = h.getPlayerSore(board);
+        System.out.println( h.getPlayerSore(board));
+        Main.scores[1] = h.getAIScore(board);
+        System.out.println( h.getAIScore(board));
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("endGameScene.fxml"));
+		    Scene scene = new Scene(root);
+            Stage winningStage = new Stage();
+            winningStage.setScene(scene);
+            winningStage.setResizable(false);
+            winningStage.show();
+        } catch (IOException e) {
+            System.out.println("Problem with endGameScene.fxml");
+            System.out.println("Player: "+Main.scores[0]+"\nAI: "+ Main.scores[1]);
+            e.printStackTrace();
+        }
     }
     @FXML
     private void backToMainMenu(){
@@ -96,7 +120,7 @@ public class GameController {
                 ((Circle)column.getChildren().get(i)).setFill(Color.WHITE);
             }
         }
-        playerTurn = true;// just to be safe
+        playerSuccess = false;// just to be safe
         Main.stage.setScene(Main.loadedScenes[0]);
     }
 }

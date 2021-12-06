@@ -4,7 +4,6 @@ import Algorithm.Algorithm;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
@@ -12,9 +11,13 @@ public class Main extends Application {
     public static Stage stage;
     public static Algorithm solver;
     public static Scene[] loadedScenes;
+	public static int[] scores;
 	@Override
 	public void start(Stage primaryStage) {
         loadedScenes = new Scene[2];
+		scores = new int[2];
+		scores[0] = 0;
+		scores[1] = 0;
         Main.stage = primaryStage;
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("mainScene.fxml"));
