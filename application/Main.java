@@ -4,6 +4,7 @@ import Algorithm.Algorithm;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
@@ -21,6 +22,7 @@ public class Main extends Application {
             scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
             loadedScenes[0] = scene;
             primaryStage.setScene(scene);
+			primaryStage.setResizable(false);
 			primaryStage.show();
             loadedScenes[1] = new Scene(FXMLLoader.load(getClass().getResource("gameScene.fxml")));
 		} catch(Exception e) {

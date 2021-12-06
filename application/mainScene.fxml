@@ -37,7 +37,7 @@
             <ToggleGroup fx:id="Algorithm" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="88.0" layoutY="161.0" mnemonicParsing="false" text="Alpa Beta pruning" toggleGroup="$Algorithm">
+      <RadioButton layoutX="88.0" layoutY="161.0" mnemonicParsing="false" text="Alpha Beta pruning" toggleGroup="$Algorithm">
          <font>
             <Font size="20.0" />
          </font>
