@@ -1,9 +1,6 @@
 # connect-4
 Connect 4 game 
-
-char array will consist of 2 chars 'a' for AI and 'p' for Player choose colors you like 
-
-
-Mainmenu -> game
-         |
-          Data = pruning,mode,k
+Player VS AI 
+AI algorithm is implemented in 2 ways using a good heuristic function :
+                  1- Minimax
+                  2- Alpha Beta Pruning
