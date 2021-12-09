@@ -1,5 +1,7 @@
 package Util;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class Util {
@@ -30,5 +32,30 @@ public class Util {
                 if(board[i][j]=='_')
                     return false;
         return true;
+    }
+    
+    public static void print(char[][] board, int currentDepth, int maxDepth, int eval) {
+    	String tree = "";
+    	for(int i=0;i<board.length;i++) {
+    		for(int t = 1;t<currentDepth*4;t++) tree+="\t";
+    			for(int j=0;j<board[0].length;j++) {
+    				tree+=board[i][j] + " ";
+    			}
+    			tree+="\n";
+    				
+    	}
+    	if(currentDepth == maxDepth || Util.isTerminal(board)) {
+    		for(int t = 1;t<currentDepth*4;t++) tree+="\t";
+    		tree+= eval;
+    	}
+    	tree+="\n";
+		FileWriter output;
+		try {
+			output = new FileWriter("tree.txt", true);
+			output.write(tree);
+			output.flush();
+			output.close();
+		} catch (IOException e) {
+			System.out.println("Failed to save the tree file.\n");		}
     }
 }

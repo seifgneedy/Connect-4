@@ -15,9 +15,7 @@ public class State {
         this.board=board;
         this.utility=utility;
     }
-    public void print(char[][] board,int maxDepth,int k){
-        //TODO: lsdkjflksdj
-    }
+    
     public char[][] getBoard(){
         return board;
     }
