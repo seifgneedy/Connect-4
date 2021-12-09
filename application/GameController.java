@@ -64,7 +64,7 @@ public class GameController {
     private void aiTurn(){
         if( ! playerSuccess)
             return;
-        char[][] nextBoard = Main.solver.Decision(board);
+        char[][] nextBoard = Main.solver.Decision(board, Main.printTheTree);
         boolean found = false;
         for(int i=0; i<height; i++){
             for(int j=0; j<width; j++){

@@ -12,6 +12,7 @@ public class Main extends Application {
     public static Algorithm solver;
     public static Scene[] loadedScenes;
 	public static int[] scores;
+	public static boolean printTheTree;
 	@Override
 	public void start(Stage primaryStage) {
         loadedScenes = new Scene[2];

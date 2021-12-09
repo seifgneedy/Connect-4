@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -8,10 +9,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="336.0" prefWidth="429.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="429.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
    <children>
-      <Button layoutX="182.0" layoutY="260.0" mnemonicParsing="false" onAction="#start" prefHeight="53.0" prefWidth="217.0" text="Start" />
-      <Button layoutX="31.0" layoutY="260.0" mnemonicParsing="false" onAction="#exit" prefHeight="53.0" prefWidth="109.0" text="Exit" />
+      <Button layoutX="181.0" layoutY="302.0" mnemonicParsing="false" onAction="#start" prefHeight="53.0" prefWidth="217.0" text="Start" />
+      <Button layoutX="30.0" layoutY="302.0" mnemonicParsing="false" onAction="#exit" prefHeight="53.0" prefWidth="109.0" text="Exit" />
       <Text layoutX="117.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max depth:">
          <font>
             <Font size="20.0" />
@@ -42,5 +43,10 @@
             <Font size="20.0" />
          </font>
       </RadioButton>
+      <CheckBox fx:id="printTheTreeBox" layoutX="114.0" layoutY="239.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="249.0" text="Print the tree">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </CheckBox>
    </children>
 </AnchorPane>

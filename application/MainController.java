@@ -12,6 +12,8 @@ public class MainController {
     private Text onlyDigitsWarning;
     @FXML
     private RadioButton miniMaxButton;
+    @FXML
+    private CheckBox printTheTreeBox;
 	@FXML
     private void start(){
         int maxDepth;
@@ -27,6 +29,8 @@ public class MainController {
         else
             Main.solver = new AlphaBeta(maxDepth);
         maxDepthField.clear();
+        Main.printTheTree = printTheTreeBox.isSelected();
+        printTheTreeBox.setSelected(false);
         Main.stage.setScene(Main.loadedScenes[1]);
     }
 
