@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch test",
+            "request": "launch",
+            "mainClass": "application.test",
+            "projectName": "connect-4_67d43714"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
@@ -15,15 +22,15 @@
             "name": "Launch State",
             "request": "launch",
             "mainClass": "Util.State",
-            "projectName": "connect-4_832685c3"
+            "projectName": "connect-4_67d43714"
         },
         {
             "type": "java",
             "name": "Launch Main",
             "request": "launch",
-            "vmArgs": "--module-path /home/ans/apps/javafx-sdk-17.0.1/lib --add-modules javafx.controls,javafx.fxml", 
+            "vmArgs": "--module-path /home/seif/javafx/javafx-sdk-15.0.1/lib --add-modules javafx.controls,javafx.fxml",
             "mainClass": "application.Main",
-            "projectName": "connect-4_832685c3"
+            "projectName": "connect-4_67d43714"
         }
     ]
 }

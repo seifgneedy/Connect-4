@@ -89,15 +89,10 @@ public class GameController {
     }
     private void endOfGame(){
         Heuristic h = new Heuristic();
-        for(int i=0; i<board.length; i++){
-            for(int j=0; j<board[0].length; j++)
-                System.out.print(board[i][j]);
-            System.out.println();
-        }
         Main.scores[0] = h.getPlayerSore(board);
-        System.out.println( h.getPlayerSore(board));
+        System.out.println("player score : "+  Main.scores[0] );
         Main.scores[1] = h.getAIScore(board);
-        System.out.println( h.getAIScore(board));
+        System.out.println( "AI score : "+Main.scores[1]);
         try {
             Parent root = FXMLLoader.load(getClass().getResource("endGameScene.fxml"));
 		    Scene scene = new Scene(root);
